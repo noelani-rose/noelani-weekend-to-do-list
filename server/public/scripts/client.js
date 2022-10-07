@@ -118,7 +118,7 @@ function render(listOfTasks){
         <ul>
             <li class = ${strikeThrough}>${task.task}</li><button class = "deleteBtn" data-id = ${task.id}>Delete</button>
             <input type = "checkbox" class = "checkboxBtn" id = "checkboxBtn${task.id}" data-id = ${task.id} data-check = ${task.complete} />
-            <label for = "complete">Done</label>
+            <label id = "checkLabel" for = "complete">Done</label>
         </ul>`)
         if (task.complete){
             $(`#checkboxBtn${task.id}`).prop("checked", true)
