@@ -64,7 +64,9 @@ function render(listOfTasks){
     for(let task of listOfTasks){
         $('#taskTable').append(`
         <ul>
-            <li>${task.task}<button id = "deleteBtn" data-id = ${task.id}>Delete</button></li>
+            <li>${task.task}<button id = "deleteBtn" data-id = ${task.id}>Delete</button>
+            <input type = "checkbox" id = "complete"/>
+            <label for = "complete">Done</label></li>
         </ul>`)
     }
 
