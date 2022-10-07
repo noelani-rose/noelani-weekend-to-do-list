@@ -6,3 +6,22 @@
     text-decoration: line-through;
 }
 
+.priorityLevel{
+    text-align: right;
+}
+
+/* .taskItems:nth-child(3){
+    background-color: rgb(230, 221, 221);
+} */
+
+.taskItems:nth-child(odd){
+    background-color: rgb(233, 230, 230);
+}
+
+.taskItems:nth-child(even){
+    background-color: rgb(255, 245, 245);
+}
+
+.taskItems{
+    border-collapse: collapse;
+}

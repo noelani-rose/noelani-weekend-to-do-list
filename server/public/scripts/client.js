@@ -13,11 +13,13 @@ function onReady() {
 
 let completed = 'FALSE';
 function addTask(){
+    // console.log('this is the priority level', $('#priority option:selected').val())
     // console.log('in add task function');
 
     let taskToAdd = {
         task: $('.textInput').val(),
-        completed: completed
+        completed: completed,
+        // priority: $('.priority').val()
     }
 
     $.ajax({
@@ -114,9 +116,13 @@ function render(listOfTasks){
         } else {
             strikeThrough = 'not-complete'
         }
+        // let priorityLevel = $('.priority').text();
+        // console.log('the priority level is', $('.priority').text())
+        // <li>${priorityLevel}</li>
         $('#taskTable').append(`
-        <ul>
-            <li class = ${strikeThrough}>${task.task}</li><button class = "deleteBtn" data-id = ${task.id}>Delete</button>
+        <ul class = "taskItems">
+            <li class = ${strikeThrough}>${task.task}</li>
+            <button class = "deleteBtn" data-id = ${task.id}>Delete</button>
             <input type = "checkbox" class = "checkboxBtn" id = "checkboxBtn${task.id}" data-id = ${task.id} data-check = ${task.complete} />
             <label id = "checkLabel" for = "complete">Done</label>
         </ul>`)
