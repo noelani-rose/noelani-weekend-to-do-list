@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+
+/* body{
+  background:yellow;
+	font-family: 'Raleway', sans-serif;
+} */
+
+h1{
+    background-color: teal;
+    opacity: 0.8;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: .9em;
+    padding-bottom: .9em;
+    margin: -20px;
+    padding-right: 50px;
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 0.1em;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: white;
+    text-shadow: 8px 8px #ff1f8f, 20px 20px #000000;
+}
+
+
+.checkboxBtn{
+    font-size: 110;
+    transform: scale(1.4)
+}
+
+.textInput{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 20em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+.addBtn {
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border-radius: 16px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #3c4043;
+    cursor: pointer;
+    display: inline-flex;
+    fill: currentcolor;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: .25px;
+    line-height: normal;
+    max-width: 100%;
+    margin-left: 5em;
+    overflow: visible;
+    padding: 2px 24px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform,opacity;
+    z-index: 0;
+  }
+
+
+  .deleteBtn{
+    margin-bottom: 1em;
+    margin-left: 2em;
+    position: absolute;
+    width: 100px;
+    height: 43px;
+    top: 50%;
+    border-radius: 5px;
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+      display: inline-block;
+      transition: all .2s ease-out;
+      /* display: flex; */
+      flex-direction: column;
+      width: 60px;
+      height: auto;
+      position: relative;
+    }
+    
+    .deleteBtn:hover {
+      background-color: tomato;
+      cursor: pointer; 
+    }
+
+  
+  .addBtn:hover {
+    background: #F6F9FE;
+    color: #174ea6;
+  }
+  
+
+#checkLabel{
+    margin-left: 70em;
+}
+
+.taskItems{
+    margin: 0;
+}
+
+
+#taskItem{
+        float:inline-start;
+        width: 300px;
+        padding-top: 30px;
+}
+
+.complete{
+    text-decoration: line-through;
+}
+
+#taskTable{
+    margin: 20px;
+    font-family: optima, sans-serif;
+}
+
+.taskItems:nth-child(odd){
+    background-color: rgb(239, 214, 72);
+}
+
+.taskItems:nth-child(even){
+    background-color: rgb(242, 151, 118);
+}
+
