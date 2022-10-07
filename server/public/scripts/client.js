@@ -5,6 +5,7 @@ $(document).ready(onReady);
 function onReady() {
     $('.addBtn').on('click', addTask);
     $('body').on('click', '.deleteBtn', deleteTask)
+    $('body').on('click', '#complete', completeTask)
 
     getTask();
 }
@@ -72,7 +73,25 @@ function deleteTask(){
 } // end of deleteTask function
 
 
+function completeTask(){
+    let completeId = $(this).data('id')
+    console.log('completing the task with the id...', completeId);
 
+    let isComplete = $(this).data('check')
+    console.log('the task is complete...?', isComplete);
+
+    $.ajax({
+        method: 'PUT',
+        url: `/to-do/${completeId}`,
+        data: {completed: isComplete}
+    })
+    .then((res) => {
+        console.log('mark as complete', isComplete);
+    })
+    .catch((err) => {
+        console.log('completing task failed', err)
+    });
+};
 
 
 function render(listOfTasks){
@@ -81,7 +100,7 @@ function render(listOfTasks){
         $('#taskTable').append(`
         <ul>
             <li>${task.task}<button class = "deleteBtn" data-id = ${task.id}>Delete</button>
-            <input type = "checkbox" id = "complete"/>
+            <input type = "checkbox" id = "complete" data-id = ${task.id} data-check = ${task.complete}/>
             <label for = "complete">Done</label></li>
         </ul>`)
     }

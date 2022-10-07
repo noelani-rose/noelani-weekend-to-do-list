@@ -1,4 +1,5 @@
 const express = require('express');
+const { send } = require('process');
 const router = express.Router();
 const pool = require('../modules/pool');
 
@@ -44,7 +45,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('in router delete with id...', req.params.id);
-    let sqlText = 'DELETE FROM "todo" WHERE "id" = $1;'
+    let sqlText = `DELETE FROM "todo" WHERE "id" = $1;`
 
     let sqlParams = [req.params.id];
 
@@ -56,6 +57,31 @@ router.delete('/:id', (req, res) => {
             console.log('error deleting task', err);
             res.sendStatus(500);
         })
+})
+
+
+router.put('/:id', (req, res) => {
+    console.log('in router put complete task', req.body.completed);
+    // let isTaskCompleted = req.body.completed;
+
+console.log('we are right here!!!!!!!');
+
+    let sqlText = `
+    UPDATE "todo"
+    SET "complete" = NOT "complete"
+    WHERE "id" = $1;`;
+
+console.log(sqlText, [req.params.id]) ;
+        pool.query(sqlText, [req.params.id])
+
+        .then((response) => {
+            
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('error in completing task', err);
+            res.sendStatus(500);
+        });
 })
 
 
