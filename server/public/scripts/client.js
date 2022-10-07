@@ -121,10 +121,12 @@ function render(listOfTasks){
         // <li>${priorityLevel}</li>
         $('#taskTable').append(`
         <ul class = "taskItems">
-            <li class = ${strikeThrough}>${task.task}</li>
-            <button class = "deleteBtn" data-id = ${task.id}>Delete</button>
+            <li id = "taskItem" class = ${strikeThrough}>${task.task}</li>
+            <label id = "checkLabel" for = "complete">Done!</label>
             <input type = "checkbox" class = "checkboxBtn" id = "checkboxBtn${task.id}" data-id = ${task.id} data-check = ${task.complete} />
-            <label id = "checkLabel" for = "complete">Done</label>
+
+            <button class = "deleteBtn" data-id = ${task.id}>Delete</button>
+
         </ul>`)
         if (task.complete){
             $(`#checkboxBtn${task.id}`).prop("checked", true)

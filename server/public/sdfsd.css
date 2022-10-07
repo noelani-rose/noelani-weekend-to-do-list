@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+
+h1{
+  background-color: teal;
+  opacity: 0.8;
+  color:black;
+  margin: -1px;
+  padding: 20px;
+  padding-right: 10em;
+  padding-left: 10em;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  position: absolute;
+  top: 10%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  letter-spacing: 0.1em;
+  -webkit-tex
+
+}
