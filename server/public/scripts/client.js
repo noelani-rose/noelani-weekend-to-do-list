@@ -4,6 +4,7 @@ $(document).ready(onReady);
 
 function onReady() {
     $('.addBtn').on('click', addTask);
+    $('body').on('click', '.deleteBtn', deleteTask)
 
     getTask();
 }
@@ -53,7 +54,22 @@ function getTask(){
 } // end of getTask
 
 
+function deleteTask(){
+    console.log('in delete task function');
+    let taskDelete = $(this).data('id');
 
+    $.ajax({
+        method: 'DELETE',
+        url: `/to-do/${taskDelete}`
+    })
+        .then(function(response) {
+            console.log('the task was deleted');
+            getTask();
+        })
+        .catch((err) => {
+            console.log('error deleting task...', err);
+        })
+} // end of deleteTask function
 
 
 
@@ -64,7 +80,7 @@ function render(listOfTasks){
     for(let task of listOfTasks){
         $('#taskTable').append(`
         <ul>
-            <li>${task.task}<button id = "deleteBtn" data-id = ${task.id}>Delete</button>
+            <li>${task.task}<button class = "deleteBtn" data-id = ${task.id}>Delete</button>
             <input type = "checkbox" id = "complete"/>
             <label for = "complete">Done</label></li>
         </ul>`)
