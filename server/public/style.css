@@ -1,3 +1,7 @@
-#deleteBtn{
-    margin-left: 20px;
+.deleteBtn{
+    margin-left: 50px;
+}
+
+.complete{
+    text-decoration: line-through;
 }

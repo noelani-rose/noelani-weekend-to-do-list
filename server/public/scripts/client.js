@@ -1,3 +1,4 @@
+
 console.log('in client.js');
 
 $(document).ready(onReady);
@@ -5,14 +6,14 @@ $(document).ready(onReady);
 function onReady() {
     $('.addBtn').on('click', addTask);
     $('body').on('click', '.deleteBtn', deleteTask)
-    $('body').on('click', '#complete', completeTask)
+    $('body').on('click', '.checkboxBtn', completeTask)
 
     getTask();
 }
 
 let completed = 'FALSE';
 function addTask(){
-    console.log('in add task function');
+    // console.log('in add task function');
 
     let taskToAdd = {
         task: $('.textInput').val(),
@@ -25,7 +26,7 @@ function addTask(){
         data: taskToAdd
     })
         .then(function(response){
-            console.log('task added...');
+            // console.log('task added...');
 
             $('.textInput').val(''),
             getTask();
@@ -36,14 +37,14 @@ function addTask(){
 }
 
 function getTask(){
-    console.log('getting task request');
+    // console.log('getting task request');
 
     $.ajax({
         method: 'GET',
         url: '/to-do'
     })
     .then((response) => {
-        console.log('getting task response from server', response);
+        // console.log('getting task response from server', response);
         const listOfTasks = response;
 
         render(response);
@@ -56,7 +57,7 @@ function getTask(){
 
 
 function deleteTask(){
-    console.log('in delete task function');
+    // console.log('in delete task function');
     let taskDelete = $(this).data('id');
 
     $.ajax({
@@ -64,7 +65,7 @@ function deleteTask(){
         url: `/to-do/${taskDelete}`
     })
         .then(function(response) {
-            console.log('the task was deleted');
+            // console.log('the task was deleted');
             getTask();
         })
         .catch((err) => {
@@ -75,18 +76,26 @@ function deleteTask(){
 
 function completeTask(){
     let completeId = $(this).data('id')
-    console.log('completing the task with the id...', completeId);
+    // console.log('completing the task with the id...', completeId);
 
+    // let isComplete = $(this).is(":checked")
     let isComplete = $(this).data('check')
-    console.log('the task is complete...?', isComplete);
+    // console.log('the task is complete...?', isComplete);
+
+
+    console.log($(this).is(":checked"))
+    
 
     $.ajax({
         method: 'PUT',
         url: `/to-do/${completeId}`,
         data: {completed: isComplete}
     })
+
     .then((res) => {
-        console.log('mark as complete', isComplete);
+        // console.log('new value of task is', res)
+        getTask();
+        // render();
     })
     .catch((err) => {
         console.log('completing task failed', err)
@@ -97,12 +106,23 @@ function completeTask(){
 function render(listOfTasks){
     $('#taskTable').empty();
     for(let task of listOfTasks){
+
+        // console.log('here are the completed tasks', task.complete);
+        let strikeThrough;
+        if (task.complete){
+            strikeThrough = 'complete'
+        } else {
+            strikeThrough = 'not-complete'
+        }
         $('#taskTable').append(`
         <ul>
-            <li>${task.task}<button class = "deleteBtn" data-id = ${task.id}>Delete</button>
-            <input type = "checkbox" id = "complete" data-id = ${task.id} data-check = ${task.complete}/>
-            <label for = "complete">Done</label></li>
+            <li class = ${strikeThrough}>${task.task}</li><button class = "deleteBtn" data-id = ${task.id}>Delete</button>
+            <input type = "checkbox" class = "checkboxBtn" id = "checkboxBtn${task.id}" data-id = ${task.id} data-check = ${task.complete} />
+            <label for = "complete">Done</label>
         </ul>`)
+        if (task.complete){
+            $(`#checkboxBtn${task.id}`).prop("checked", true)
+        } 
     }
 
 }
